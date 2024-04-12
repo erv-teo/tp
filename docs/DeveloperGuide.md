@@ -612,7 +612,8 @@ Given below are instructions to test the app manually.
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum. 
+   2. Double-click the jar file <br>
+   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum. 
 
 2. Saving window preferences
 
@@ -645,6 +646,10 @@ Given below are instructions to test the app manually.
    7. Test case (Repeated Parameter): `add n\John Smith ic\A1234567B ic\A1234567B dob\01/01/2000 ad\02/02/2020 w\a1 
    t\diarrhea r\likes to go to the park`<br>
       Expected: Similar to previous.
+
+    8. Test case (Date of Birth after Admission Date): `add n\John Smith ic\A1234567B dob\03/03/2000 ad\01/01/1999 w\a1`<br>
+        Expected: Similar to previous.
+       
 
 ### Viewing patients
 
@@ -691,9 +696,27 @@ Given below are instructions to test the app manually.
 
    1. Test case: `edit 1 t\flu r\afraid of darkness`<br>
       Expected: tag and remark of first patient is changed. Details of the edited patient is shown in the status bar.
+   
+   2. Test case (Invalid Index): `edit x n\John` where x is larger than list size <br>
+      Expected: Error details shown in status bar.
 
-    1. Test case(invalid name): `edit n\ `<br>
-       Expected: Patient name is not changed. Error details shown in the status message.
+    1. Test case (Invalid Name): `edit 1 n\ `<br>
+       Expected: Patient name is not changed. Error details shown in the status bar.
+   
+   2. Test case (Invalid NRIC): `edit 1 ic\a1231234b`<br>
+      Expected: Patient NRIC is not changed. Error details shown in the status bar.
+
+   3. Test case (Invalid Date of Birth): `edit 1 dob\03-03-2004`<br>
+   Expected: Patient Date of Birth is not changed. Error details shown in the status bar.
+
+    4. Test case (Invalid Admission Date): `edit 1 ad\04-02-2024 `<br>
+       Expected: Patient Admission Date is not changed. Error details shown in the status bar.
+   
+   5. Test case (Date of Birth after Admission Date): `edit 1 dob\03/03/2024 ad\01/01/2024 `<br>
+   Expected: Patient Date of Birth and Admission Date is not changed. Error details shown in the status bar. 
+
+    6. Test case (Invalid Ward): `edit 1 w\B-1 `<br>
+       Expected: Patient ward is not changed. Error details shown in the status bar.
 
 ### Finding a patient
 
@@ -718,15 +741,12 @@ Given below are instructions to test the app manually.
 
 2. Finding a patient by NRIC
 
-    1. Prerequisites: There exist a patient with the NRIC `A1234567B` in the patient records.
+    1. Prerequisites: There exist a patient with the NRIC `A1234567B` in the address book.
 
     1. Test case: `find ic\A1234567`<br>
        Expected: The patient with the NRIC `A1234567B` is shown.
 
     1. Test case: `find ic\a1234567b`<br>
-       Expected: Similar to previous.
-
-    1. Test case: `find n\Smith`<br>
        Expected: Similar to previous.
 
     1. Test case: `find ic\`<br>
@@ -739,7 +759,7 @@ Given below are instructions to test the app manually.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First patient is deleted from the list. Details of the deleted contact shown in the status message. 
+      Expected: First person is deleted from the list. Details of the deleted contact shown in the status message. 
 
    1. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message.
