@@ -678,9 +678,9 @@ Given below are instructions to test the app manually.
 
 ### Editing a patient
 
-1. Edit a person while all persons are being shown
+1. Edit a patient while all patients are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
 
     1. Test case: `edit 1 n\John`<br>
        Expected: Name of first patient is changed. Details of the edited patient is shown in the status bar.
@@ -754,15 +754,15 @@ Given below are instructions to test the app manually.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a patient while all patients are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First person is deleted from the list. Details of the deleted contact shown in the status message. 
+      Expected: First patient is deleted from the list. Details of the deleted contact shown in the status message. 
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message.
+      Expected: No patient is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
